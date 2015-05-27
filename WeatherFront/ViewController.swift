@@ -12,6 +12,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var destinationName: UITextField!
     
+    private var cityName: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -21,8 +23,32 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    @IBAction func confirm(sender: UIButton) {
+    
+    @IBAction func targetCityGo(sender: UIButton) {
+        if let dcName = destinationName.text {
+            cityName = dcName
+        }
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var destinationVC = segue.destinationViewController as? UIViewController
+        if let navController = destinationVC as? UINavigationController {
+            destinationVC = navController.visibleViewController
+        }
+        
+        if let dwvc = destinationVC as? DestinationWeatherUIViewController {
+            if let identifier = segue.identifier {
+                switch identifier {
+                case "showDestinationWeather":
+                    if cityName != "" {
+                        dwvc.destinationCity = cityName
+                    }
+                case "showInfo": fallthrough
+                default: break
+                }
+            }
+        }
     }
 
 }

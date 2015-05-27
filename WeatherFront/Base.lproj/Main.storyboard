@@ -30,7 +30,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="blJ-sE-pDF" kind="show" id="duJ-CF-BZe"/>
+                                    <segue destination="blJ-sE-pDF" kind="show" identifier="showInfo" id="duJ-CF-BZe"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where is your destination?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="uCP-ju-2ks">
@@ -50,7 +50,8 @@
                                 </state>
                                 <connections>
                                     <action selector="confirm:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kg1-o2-dIf"/>
-                                    <segue destination="al8-EO-jYM" kind="show" id="22T-0W-2rx"/>
+                                    <action selector="targetCityGo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tL2-ib-ekL"/>
+                                    <segue destination="al8-EO-jYM" kind="show" identifier="showDestinationWeather" id="22T-0W-2rx"/>
                                 </connections>
                             </button>
                         </subviews>

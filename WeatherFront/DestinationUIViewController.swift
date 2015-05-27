@@ -9,6 +9,8 @@
 import UIKit
 
 class DestinationWeatherUIViewController: UIViewController {
+    
+    var destinationCity: String = ""
 
     @IBOutlet weak var destinationName: UILabel!
     
@@ -35,6 +37,8 @@ class DestinationWeatherUIViewController: UIViewController {
     @IBOutlet weak var theDayAfterLowestTemp: UILabel!
     @IBOutlet weak var theDayAfterHighestTemp: UILabel!
     @IBOutlet weak var theDayAfterWeatherLogo: UIImageView!
+    
+    
     
     
 }

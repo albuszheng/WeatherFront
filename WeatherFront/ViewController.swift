@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var destinationName: UITextField!
+    @IBOutlet weak var destinationName: UITextField?
     
     private var cityName: String = ""
     
@@ -25,30 +25,43 @@ class ViewController: UIViewController {
     }
     
     @IBAction func targetCityGo(sender: UIButton) {
-        if let dcName = destinationName.text {
+        if let dcName = destinationName!.text {
             cityName = dcName
         }
     }
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var destinationVC = segue.destinationViewController as? UIViewController
-        if let navController = destinationVC as? UINavigationController {
-            destinationVC = navController.visibleViewController
-        }
-        
-        if let dwvc = destinationVC as? DestinationWeatherUIViewController {
-            if let identifier = segue.identifier {
-                switch identifier {
-                case "showDestinationWeather":
-                    if cityName != "" {
-                        dwvc.destinationCity = cityName
+        if segue.identifier == "showDestinationWeather" {
+            var destinationVC = segue.destinationViewController as? UIViewController
+            if let navController = destinationVC as? UINavigationController {
+                destinationVC = navController.topViewController
+                
+                if let dwvc = destinationVC as? DestinationWeatherUIViewController {
+                    if destinationName!.text != nil {
+                        dwvc.destinationCity = destinationName!.text
                     }
-                case "showInfo": fallthrough
-                default: break
                 }
             }
+            
         }
+//        var destinationVC = segue.destinationViewController as? UIViewController
+//        if let navController = destinationVC as? UINavigationController {
+//            destinationVC = navController.topViewController
+//        }
+//        
+//        if let dwvc = destinationVC as? DestinationWeatherUIViewController {
+//            if let identifier = segue.identifier {
+//                switch identifier {
+//                case "showDestinationWeather":
+//                    if destinationName!.text != nil {
+//                        dwvc.destinationCity = destinationName!.text
+//                    }
+//                case "showInfo": fallthrough
+//                default: break
+//                }
+//            }
+//        }
     }
 
 }

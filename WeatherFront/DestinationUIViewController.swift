@@ -38,7 +38,38 @@ class DestinationWeatherUIViewController: UIViewController {
     @IBOutlet weak var theDayAfterHighestTemp: UILabel!
     @IBOutlet weak var theDayAfterWeatherLogo: UIImageView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if destinationCity != "" {
+            let dataSource = WeatherData(cityName: destinationCity)
+            destinationName.text = destinationCity
+            updateUIInfo(dataSource)
+        }
+        
+    }
     
+    private func updateUIInfo(data: WeatherData){
+        destinationName.text = data.cityShowName
+        
+        presentDayDay.text = data.presentDay.day
+        presentDayDate.text = data.presentDay.date
+        presentDayHighestTemp.text = data.presentDay.HighestTemp
+        presentDayLowestTemp.text = data.presentDay.lowestTemp
+        presentDayWeatherText.text = data.presentDay.weatherText
+        
+        tomorrowDay.text = data.tomorrow.day
+        tomorrowDate.text = data.tomorrow.date
+        tomorrowHighestTemp.text = data.tomorrow.HighestTemp
+        tomorrowLowestTemp.text = data.tomorrow.lowestTemp
+        tomorrowWeatherText.text = data.tomorrow.weatherText
+        
+        theDayAfterDay.text = data.theDayAfter.day
+        theDayAfterDate.text = data.theDayAfter.date
+        theDayAfterHighestTemp.text = data.theDayAfter.HighestTemp
+        theDayAfterLowestTemp.text = data.theDayAfter.lowestTemp
+        theDayAfterWeatherText.text = data.theDayAfter.weatherText
+    }
     
     
 }

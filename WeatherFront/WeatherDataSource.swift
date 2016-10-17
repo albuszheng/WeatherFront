@@ -8,6 +8,7 @@
 
 //  Using Yahoo Weather API as the data source
 import Foundation
+import SwiftyJSON
 
 struct dayWeatherValues {
     var day: String = ""
@@ -17,9 +18,9 @@ struct dayWeatherValues {
     var weatherText = ""
 }
 
-public class WeatherData{
+open class WeatherData{
     
-    private var city: String
+    fileprivate var city: String
     
     var cityShowName: String = ""
     
@@ -35,7 +36,7 @@ public class WeatherData{
     func getInfo() {
         let query = "select * from weather.forecast where woeid in (select woeid from geo.places(1) where text=\"\(city)\")"
         
-        var yql = YQL()
+        let yql = YQL()
         
         let result = JSON(yql.query(query))
         
@@ -62,7 +63,7 @@ public class WeatherData{
         theDayAfter.weatherText = response["item"]["forecast"][2]["text"].string!
     }
     
-    private func fToC (fValue: String) -> String{
+    fileprivate func fToC (_ fValue: String) -> String{
         var cTemp = (fValue as NSString).doubleValue
         let temp:Double = 5 / 9
         cTemp = cTemp - 32

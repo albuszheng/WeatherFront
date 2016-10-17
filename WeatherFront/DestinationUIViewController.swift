@@ -30,7 +30,7 @@ class DestinationWeatherUIViewController: UIViewController {
         
     }
     
-    private func updateUIInfo(data: WeatherData){
+    fileprivate func updateUIInfo(_ data: WeatherData){
 
     }
     
